@@ -36,4 +36,27 @@ describe("Our first suite", () => {
     //The most recommended way by Cypress
     cy.get("[data-cy='imputEmail1']");
   });
+
+  it("second test", () => {
+    cy.visit("/");
+    cy.contains("Form").click();
+    cy.contains("Form Layouts").click();
+
+    cy.get('[data-cy="signInButton"]');
+
+    cy.contains("Sign in");
+    cy.contains("[status='warning']", "Sign in");
+
+    //in case that you can't find any unique attribute on the signing button
+    //use a parent element to find the target one
+    cy.get("#inputEmail3")
+      .parents("form")
+      .find("button")
+      .should("contain", "Sign in")
+      .parents("form")
+      .find("nb-checkbox")
+      .click();
+
+    cy.contains("nb-card", "Horizontal form").find('[type="email"]');
+  });
 });
