@@ -146,7 +146,7 @@ describe("Our first suite", () => {
       });
   });
 
-  it.only("assert property", () => {
+  it("assert property", () => {
     cy.visit("/");
     cy.contains("Form").click();
     cy.contains("Datepicker").click();
@@ -159,6 +159,21 @@ describe("Our first suite", () => {
         cy.wrap(input)
           .invoke("prop", "value")
           .should("contain", "Dec 17, 2020");
+      });
+  });
+
+  it.only("radio button", () => {
+    cy.visit("/");
+    cy.contains("Form").click();
+    cy.contains("Form Layout").click();
+
+    cy.contains("nb-card", "Using the Grid")
+      .find('[type="radio"]')
+      .then((radioButtons) => {
+        cy.wrap(radioButtons)
+          .first()
+          .check({ force: true })
+          .should("be.checked");
       });
   });
 });
