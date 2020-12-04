@@ -179,6 +179,8 @@ describe("Our first suite", () => {
 
         //first() and eq(0) are the exact same
         cy.wrap(radioButtons).eq(0).should("not.be.checked");
+
+        cy.wrap(radioButtons).eq(2).should("be.disabled");
       });
   });
 });
