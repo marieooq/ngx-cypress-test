@@ -174,6 +174,11 @@ describe("Our first suite", () => {
           .first()
           .check({ force: true })
           .should("be.checked");
+
+        cy.wrap(radioButtons).eq(1).check({ force: true });
+
+        //first() and eq(0) are the exact same
+        cy.wrap(radioButtons).eq(0).should("not.be.checked");
       });
   });
 });
